@@ -6,7 +6,7 @@
 /*   By: sebavaro <sebavaro@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/09 22:03:22 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/09 22:27:53 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*read_and_stash(int fd, char *stash) //comme c'est dit elle lit et rempli l
 	char	*buffer;
 	
 	if (!stash)
-		stash = ft_calloc(1,1); // securité au cas ou on alloue 1 meme si j'aurait pu mettre NULL ou strdup de rien ""
+		stash = ft_calloc(1, 1); // securité au cas ou on alloue 1 meme si j'aurait pu mettre NULL ou strdup de rien ""
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char)); // ouvre mon buffer d'une certaine taille
 	byte_read = 1; // je l'initialise a 1 pour rentrer dans la boucle
 	while (byte_read > 0) // while byte read is grater than zero (positif genre)
@@ -76,9 +76,9 @@ char	*the_next_line(char *stash)
 	
 	i = 0;
 	j = 0;
-	while (stash[i] && stash[i] == '\n') //tant que on est ni a la fin ni a la fin de la line, on avance I
+	while (stash[i] && stash[i] != '\n') //chercher le \n
 		i++;
-	if (!stash[i]) //securite
+	if (!stash[i]) //securite - pas de \n trouvé = fin du fichier
 	{
 		free(stash);
 		return (NULL);

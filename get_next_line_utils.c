@@ -6,7 +6,7 @@
 /*   By: sebavaro <sebavaro@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:47 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/09 21:33:59 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/09 22:29:16 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j ++;
 	}
 	str[i] = '\0';
-    // free((void*)(s1)); //add a free blg
+	free((void*)(s1));
 	return (str);
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t			i;
 	unsigned char	*tmp;
 
-	i = 0;
 	if (nmemb == 0 || size == 0)
 	{
 		tmp = malloc(0);
@@ -86,8 +84,8 @@ size_t	ft_strlen(const char *s)
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	size_t			i;
 	unsigned char	*str;
+	size_t		i;
 
 	i = 0;
 	if (!s && c == 0)
