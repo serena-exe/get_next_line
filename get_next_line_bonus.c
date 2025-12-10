@@ -6,7 +6,7 @@
 /*   By: sebavaro <sebavaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/10 14:47:42 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/10 15:56:21 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,15 @@ char	*the_next_line(char *stash)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*the_buffer[1024]; //pour les bonus je crois tu met ca en *buff[1042] j'ai vu ça en corrigeant paultoupens <3
+	static char	*the_buffer[MAX_FD]; //pour les bonus je crois tu met ca en *buff[1042] j'ai vu ça en corrigeant paultoupens <3
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
 	the_buffer[fd] = read_and_stash(fd, the_buffer[fd]);
-	if (!the_buffer[fd])
+	if (!the_buffer[fd] || *the_buffer[fd] == 0)//nio
+	{
+		free (the_buffer[fd]); //nio
 		return (NULL);
+	}
 	line = get_the_line(the_buffer[fd]);
 	the_buffer[fd] = the_next_line(the_buffer[fd]);
 	return (line);
