@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sebavaro <sebavaro@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: sebavaro <sebavaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/09 22:42:14 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:45:08 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*read_and_stash(int fd, char *stash) //comme c'est dit elle lit et rempli l
 {
 	int		byte_read;
 	char	*buffer;
-	
+
 	if (!stash)
 		stash = ft_calloc(1, 1); // securité au cas ou on alloue 1 meme si j'aurait pu mettre NULL ou strdup de rien ""
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char)); // ouvre mon buffer d'une certaine taille
@@ -27,27 +27,27 @@ char	*read_and_stash(int fd, char *stash) //comme c'est dit elle lit et rempli l
 		byte_read = read(fd, buffer, BUFFER_SIZE); //la b read = le nbr de byte read
 		if (byte_read == -1) // securite si ca fait de la D
 		{
-			free(buffer);
-			return(NULL);
+			free (stash);
+			free (buffer);
+			return (NULL);
 		}
-		buffer[byte_read] = 0; // c comme un str[i] cest buffer de byte read
+		buffer[byte_read] = 0; // c comme un str[i] cest buffer de byte read \0
 		stash = ft_strjoin(stash, buffer); //je join les deux stash and buffer ATTENTION j'ai rajouté un free dans strjoin
-
 		if (ft_strchr (buffer, '\n')) // si ya un retour a ligne sur la partie étudié bah vasy on s'arrette
 			break ;
 	}
-	free(buffer);
-	return(stash); //on return la stash du coup 
+	free (buffer);
+	return (stash); //on return la stash du coup 
 }
 
 char	*get_the_line(char *stash) // renvoie la line du stash
 {
 	char	*line;
 	int		i;
-	
+
 	i = 0; //normal hein on part d'en bas pour atteindre les sommets my G
 	if (!stash[i])
-		return(NULL);
+		return (NULL);
 	while (stash[i] && stash[i] != '\n')
 		i ++; // on mesure le stash
 	if (stash[i] == '\n')
@@ -73,7 +73,6 @@ char	*the_next_line(char *stash)
 	int		i;
 	int		j;
 	char	*next_line; //la on veut la ligne d'apres
-	
 	i = 0;
 	j = 0;
 	while (stash[i] && stash[i] != '\n') //chercher le \n
@@ -93,36 +92,38 @@ char	*the_next_line(char *stash)
 	}
 	next_line[j] = '\0'; //le back slash 0
 	free(stash); //on libere la stash
-	return(next_line); //et voila
+	return (next_line); //et voila
 }
 
-char	*get_next_line (int fd)
+char	*get_next_line(int fd)
 {
-	static char	*the_buffer; //pour les bonus je crois tu met ca en *buff[1042] j'ai vu ça en corrigeant paultoupens <3
 	char		*line;
-
-	if (fd < 0 || BUFFER_SIZE <= 0 )
+	static char	*the_buffer; //pour les bonus je crois tu met ca en *buff[1042] j'ai vu ça en corrigeant paultoupens <3
+	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
 	the_buffer = read_and_stash(fd, the_buffer); //ça cest pour read the file
 	if (!the_buffer)
 		return (NULL);
 	line = get_the_line(the_buffer); // ça c'est pour avoir la ligne
 	the_buffer = the_next_line(the_buffer); // la en gros mon buffer il prend la ligne d'apres
-	return(line);
+	return (line);
 }
 
-int main()
-{
-    int fd = open("text.txt", O_RDONLY);
-    char *line;
+// int	main(void)
+// {
+//     int fd = open("empty.txt", O_RDONLY);
+// 	char *line;
     
-    line = get_next_line(fd);
-    while (line)
-    {
-        printf("%s", line);
-        free(line);
-        line = get_next_line(fd);
-    }
-    close(fd);
-    return(0);
-}
+//     line = get_next_line(fd);
+// 	printf("%s", line);
+// 	free(line);
+
+//     // while (line)
+//     // {
+//         // printf("%s", line);
+// 		// free(line);
+//         // line = get_next_line(fd);
+//     // }
+//     close(fd);
+//     return(0);
+// }
