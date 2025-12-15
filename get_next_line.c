@@ -6,7 +6,7 @@
 /*   By: sebavaro <sebavaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/10 14:45:08 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/12 03:06:07 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*the_buffer; //pour les bonus je crois tu met ca en *buff[1042] j'ai vu ça en corrigeant paultoupens <3
-	if (fd < 0 || BUFFER_SIZE < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	the_buffer = read_and_stash(fd, the_buffer); //ça cest pour read the file
 	if (!the_buffer)

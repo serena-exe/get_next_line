@@ -6,7 +6,7 @@
 /*   By: sebavaro <sebavaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/10 15:56:21 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:18:27 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*the_next_line(char *stash)
 	int		i;
 	int		j;
 	char	*next_line;
+	
 	i = 0;
 	j = 0;
 	while (stash[i] && stash[i] != '\n')
@@ -84,28 +85,27 @@ char	*the_next_line(char *stash)
 	}
 	i ++;
 	next_line = ft_calloc((ft_strlen(stash) - i + 1), sizeof(char));
+	while (stash[i])
 	{
 		next_line[j] = stash[i];
 		j ++;
 		i ++;
 	}
-	next_line[j] = '\0';
+	next_line[j] = 0;
 	free(stash);
 	return (next_line);
 }
 
 char	*get_next_line(int fd)
 {
+	static char	*the_buffer[1024]; //pour les bonus je crois tu met ca en *buff[1042] j'ai vu ça en corrigeant paultoupens <3
 	char		*line;
-	static char	*the_buffer[MAX_FD]; //pour les bonus je crois tu met ca en *buff[1042] j'ai vu ça en corrigeant paultoupens <3
+	
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
 	the_buffer[fd] = read_and_stash(fd, the_buffer[fd]);
-	if (!the_buffer[fd] || *the_buffer[fd] == 0)//nio
-	{
-		free (the_buffer[fd]); //nio
+	if (!the_buffer[fd])
 		return (NULL);
-	}
 	line = get_the_line(the_buffer[fd]);
 	the_buffer[fd] = the_next_line(the_buffer[fd]);
 	return (line);
