@@ -6,7 +6,7 @@
 /*   By: sebavaro <sebavaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/15 11:18:27 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:06:13 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*the_next_line(char *stash)
 	int		i;
 	int		j;
 	char	*next_line;
-	
+
 	i = 0;
 	j = 0;
 	while (stash[i] && stash[i] != '\n')
@@ -98,9 +98,9 @@ char	*the_next_line(char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*the_buffer[1024]; //pour les bonus je crois tu met ca en *buff[1042] j'ai vu ça en corrigeant paultoupens <3
 	char		*line;
-	
+	static char	*the_buffer[1024];
+
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
 	the_buffer[fd] = read_and_stash(fd, the_buffer[fd]);
@@ -110,22 +110,3 @@ char	*get_next_line(int fd)
 	the_buffer[fd] = the_next_line(the_buffer[fd]);
 	return (line);
 }
-
-// int	main(void)
-// {
-//     int fd = open("empty.txt", O_RDONLY);
-// 	char *line;
-    
-//     line = get_next_line(fd);
-// 	// printf("%s", line);
-// 	// free(line);
-
-//     while (line)
-//     {
-//         printf("%s", line);
-// 		free(line);
-//         line = get_next_line(fd);
-//     }
-//     close(fd);
-//     return(0);
-// }

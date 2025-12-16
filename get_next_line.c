@@ -6,7 +6,7 @@
 /*   By: sebavaro <sebavaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/12 03:06:07 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:04:21 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,22 +108,3 @@ char	*get_next_line(int fd)
 	the_buffer = the_next_line(the_buffer); // la en gros mon buffer il prend la ligne d'apres
 	return (line);
 }
-
-// int	main(void)
-// {
-//     int fd = open("empty.txt", O_RDONLY);
-// 	char *line;
-    
-//     line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-
-//     // while (line)
-//     // {
-//         // printf("%s", line);
-// 		// free(line);
-//         // line = get_next_line(fd);
-//     // }
-//     close(fd);
-//     return(0);
-// }
