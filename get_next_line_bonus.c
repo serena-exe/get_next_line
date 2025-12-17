@@ -6,12 +6,11 @@
 /*   By: sebavaro <sebavaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/16 14:06:13 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:43:05 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <stdio.h>
 
 char	*read_and_stash(int fd, char *stash)
 {

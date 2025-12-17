@@ -17,12 +17,12 @@ int	main(void)
 	// printf("%s", line);
 	// free(line);
 
-	// while (line)
-	// {
-	// 	printf("%s", line);
-	// 	free(line);
-	// 	line = get_next_line(fd);
-	// }
+	while (line)
+	{
+		printf("%s \n", line);
+		free(line);
+		line = get_next_line(fd);
+	}
 	
 	// line = get_next_line(fd2);
 	// while (line)

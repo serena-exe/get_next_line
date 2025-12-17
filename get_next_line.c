@@ -6,12 +6,11 @@
 /*   By: sebavaro <sebavaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:50:40 by sebavaro          #+#    #+#             */
-/*   Updated: 2025/12/17 13:07:37 by sebavaro         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:46:38 by sebavaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*read_and_stash(int fd, char *stash) //comme c'est dit elle lit et rempli la stash until \n
 {
@@ -33,7 +32,7 @@ char	*read_and_stash(int fd, char *stash) //comme c'est dit elle lit et rempli l
 		}
 		buffer[byte_read] = 0; // c comme un str[i] cest buffer de byte read \0
 		stash = ft_strjoin(stash, buffer); //je join les deux stash and buffer ATTENTION j'ai rajouté un free dans strjoin
-		if (ft_strchr (buffer, '\n')) // si ya un retour a ligne sur la partie étudié bah vasy on s'arrette
+		if (ft_strchr (buffer, '\n')) // si ya un retour a ligne sur la partie étudié bah vasy on s'arrette ***
 			break ;
 	}
 	free (buffer);
@@ -48,18 +47,18 @@ char	*get_the_line(char *stash) // renvoie la line du stash
 	i = 0; //normal hein on part d'en bas pour atteindre les sommets my G
 	if (!stash[i])
 		return (NULL);
-	while (stash[i] && stash[i] != '\n')
+	while (stash[i] && stash[i] != '\n') //***
 		i ++; // on mesure le stash
-	if (stash[i] == '\n')
+	if (stash[i] == '\n') //***
 		i ++; //cou loucoucou loucoucou stash stash faut bien prendre le back slash n
 	line = ft_calloc(i + 1, sizeof(char));
 	i = 0; //mtn qu'on a la mesure bah on peut remettre a zero
-	while (stash[i] && stash[i] != '\n') // du coup la on fait pareil mais on copie
+	while (stash[i] && stash[i] != '\n') // du coup la on fait pareil mais on copie ***
 	{
 		line[i] = stash[i]; //copie
 		i ++;
 	}
-	if (stash[i] == '\n') // on ajoute le \n
+	if (stash[i] == '\n') // on ajoute le \n ***
 	{
 		line[i] = stash[i];
 		i++;
@@ -75,7 +74,7 @@ char	*the_next_line(char *stash)
 	char	*next_line; //la on veut la ligne d'apres
 	i = 0;
 	j = 0;
-	while (stash[i] && stash[i] != '\n') //chercher le \n
+	while (stash[i] && stash[i] != '\n') //chercher le \n ***
 		i++;
 	if (!stash[i]) //securite - pas de \n trouvé = fin du fichier
 	{
