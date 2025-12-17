@@ -6,7 +6,7 @@
 
 The `Get_next_line` function allows us to read a file line by line.
 
-The goal of this project is to help students understand how static variables and parse a file, `file.txt`.
+The goal of this project is to help students understand how static variables and read a file, `file.txt`.
 
 ---
 
