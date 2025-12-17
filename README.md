@@ -4,22 +4,24 @@
 
 ## Description
 
-`Get_next_line` is a function that allow us to read a file line by line.
+The `Get_next_line` function allows us to read a file line by line.
 
-The goal of this project is to help students understand how static variables work and parse a `file.txt`
-
----
-
-## Objectifs
-
-- 
+The goal of this project is to help students understand how static variables and parse a file, `file.txt`.
 
 ---
 
-## Function structure
-|Prototype|Parameter|Return value|External functions|
+## Objectives
+
+- Understand how to read a file.
+- Write clean, reusable, and robust code.
+- Understand and use static variables.
+
+---
+
+## Function Structure
+|Prototype|Parameter|Return Value|External Functions|
 |:--|:--|:--|--|
-|`char *get_next_line(int fd)`|`fd`: file descriptor|Read line: correct behavior NULL: there is nothing else to read, or an error occurred|read, malloc, free|
+|`char *get_next_line(int fd)`|`fd`: file descriptor|Read line: correct behavior `NULL`: there is nothing else to read, or an error occurred|`read`, `malloc`, `free`|
 
 ---
 
@@ -27,10 +29,12 @@ The goal of this project is to help students understand how static variables wor
 
 ┌── `get_next_line.h` Header file with all function prototypes <br>
 ├── `get_next_line.c` Function implementations<br>
-└── `get_next_line_utils.c` Requiered functions
+└── `get_next_line_utils.c` Required functions
 
 ---
 ## Instructions
+
+In order to run this code, you must create your own `main.c` file with your **main function** linked with the get_next_line.h. Don't forget to `#include "get_next_line.h"`.
 
 Compile with:
 ```bash
@@ -42,10 +46,10 @@ Run with:
 ```
 
 ---
-## Ressources
+## Resources
 
-- peer to peer 
-- youtube video
-- static variable
+- [Peer to peer](https://42angouleme.fr/admissions-42-angouleme/) 
+- [This youtube video](https://www.youtube.com/watch?v=-Mt2FdJjVno)
+- [Static variable in C](https://www.geeksforgeeks.org/c/static-variables-in-c/)
 
 ---
